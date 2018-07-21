@@ -5,30 +5,28 @@
  */
 package Tests;
 
-import Entities.Candidat;
 import Entities.Cv;
 import Entities.Demande;
 //import Entities.Metier;
 import Entities.Offre;
 import Entities.Postuler;
-import Entities.Recruteur;
 import Entities.Users;
 import Enums.Formation;
 import Enums.SituationMatrimoniale;
+import Enums.TypeUser;
 import Repositories.BaseRepository;
-import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-
 
 /**
  *
  * @author ATANDA
  */
 public class test {
-     public static void main(String[] args) {
+
+    public static void main(String[] args) {
         // TODO code application logic here
         //--- Création d'un EntityManageter
         System.out.println("Création d'un EntityManager");
@@ -36,83 +34,59 @@ public class test {
         EntityManager em = emf.createEntityManager();
 
         //création d'un nouvel CV      
-        System.out.println( "Création d'un CV");
+        System.out.println("Création d'un CV");
         Cv v = new Cv();
-        v.setIdCv("cv2");
-        v.setNomCandidat("DAOUDA");
-        v.setPrenomCandidat("Admol");
-        v.setAgeCandidat("24 ans");
+        v.setNomCandidat("LAMINA");
+        v.setPrenomCandidat("Acharaf");
+        v.setAgeCandidat("23 ans");
         v.setSituation(SituationMatrimoniale.Célibataire);
-        v.setEmailCandidat("admolaatanda@gmail.com");
+        v.setAdresseCandidat("Cotonou/qtier maromilitaire");
         v.setTelephoneCandidat(96628294);
         v.setVilleCandidat("Porto-Novo");
         v.setPaysCandidat("BENIN");
-        v.setNomSociété("RINTIO");
-        v.setVilleSociété("Cotonou");
-        v.setPaysSociété("BENIN");
+        v.setNomSociete("RINTIO");
+        v.setVilleSociete("Cotonou");
+        v.setPaysSociete("BENIN");
         v.setPoste("Stagiaire");
         v.setDuree("1 an");
         v.setNomEcole("HECM");
         v.setVilleEcole("Cotonou");
         v.setPaysEcole("BENIN");
-        v.setDateDebutFormation(new Date());
-        v.setDateFinFormation(new Date());
+        v.setDateDebutFormation("");
+        v.setDateFinFormation("20-05-2018");
         v.setDiplomeFinFormation("Néant");
         v.setNiveau(Formation.BAC3);
         v.setDomaineCompetence("Programmation Java");
-        
-      //création d'un nouvel Candidat      
-        System.out.println( "Création d'un Candidat");
-        Candidat c = new Candidat();
-        c.setIdCandidat("C02");
-//        c.setNiveau(Formation.BAC2);
-//        c.setCv( " BAC 2002");
-//        c.setIdMetier("M04");
-        
+
         //création d'un nouvel Demande      
-        System.out.println( "Création d'une Demande");
+        System.out.println("Création d'une Demande");
         Demande d = new Demande();
-        d.setIdDemande("D01");
         d.setValidite(Boolean.TRUE);
-        
-        //création d'un nouvel Metier      
-//        System.out.println( "Création d'un Metier");
-//        Metier m = new Metier();
-//        m.setIdMetier("M10");
-//        m.setLibMetier("Comptable");
-//        m.setExperiencePro("2ans");
-        
+
         //création d'un nouvel Offre      
-        System.out.println( "Création d'une Offre");
+        System.out.println("Création d'une Offre");
         Offre o = new Offre();
-        o.setIdOffre("O01");
-        o.setDescription("Recherche des infirmiers");
-        o.setDateDebut(new Date());
-        o.setDateFin(new Date(2018,11,22));
-        
+        o.setTitre("Recherche des infirmiers");
+        o.setDateDebut("");
+        o.setDateFin("2018,11,22");
+
         //création d'un nouvel Postuler      
-        System.out.println( "Création d'un Postuler");
+        System.out.println("Création d'un Postuler");
         Postuler p = new Postuler();
-        p.setIdPost("P01");
         p.setLibPost("Offre d'emplois");
-        p.setDatePost(new Date());
-        
-        //création d'un nouvel Recruteur      
-        System.out.println( "Création d'un Recruteur");
-        Recruteur r = new Recruteur();
-        r.setIdRecruteur("R01");
-        r.setLibSociete("ECOBANK");
-        
+        p.setDatePost("");
+
 //        //création d'un nouvel Users      
-        System.out.println( "Création d'un Users");
-         Users u = new Users();
-        u.setIdUser("U01");
+        System.out.println("Création d'un Users");
+        Users u = new Users();
         u.setNom("DAOUDA");
         u.setPrenom("Achraf");
-        u.setDateNaissance(new Date(1995,05,06));
+        u.setDateNaissance("995,05,06");
         u.setAdresse("Porto-Novo");
         u.setPassword("pw005");
-        
+        u.setEmail("email@aaa.com");
+        u.setTypeUser(TypeUser.CANDIDAT);
+
         //--- persistons cette personne dans la base
         EntityTransaction tx = em.getTransaction();
         System.out.println("Début de la transaction");
@@ -120,20 +94,18 @@ public class test {
         try {
             System.out.println("Ajout dans la base en cours...");
             em.persist(v);
-            em.persist(c);
+
             em.persist(d);
-//            em.persist(m);
             em.persist(o);
             em.persist(p);
-            em.persist(r);
-            em.persist(u);
-            
 
-            BaseRepository b = new BaseRepository("GesJob_Pu",Candidat.class);
+            em.persist(u);
+
+            BaseRepository b = new BaseRepository("GesJob_Pu", Users.class);
 //            c.setIdCandidat("C01");
-   
+
             //Suppresion d'un objet
-            b.delete(c);
+            b.delete(o);
             tx.commit();
             System.out.println("Transaction validée");
         } catch (Exception e) {
@@ -145,5 +117,5 @@ public class test {
             emf.close();
         }
 
-}
+    }
 }

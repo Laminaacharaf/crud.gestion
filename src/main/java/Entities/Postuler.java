@@ -7,15 +7,10 @@ package Entities;
 
 import com.rintio.commons.annotations.NativeQueryResultColumn;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
 
 /**
  *
@@ -24,62 +19,93 @@ import javax.persistence.Temporal;
 @Entity
 public class Postuler implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static long serialVersionUID = 1L;
+
     @Id
     @NativeQueryResultColumn(columnType = NativeQueryResultColumn.COLUMNTYPE.SIMPLE)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String idPost;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     @NativeQueryResultColumn(columnType = NativeQueryResultColumn.COLUMNTYPE.SIMPLE)
     private String libPost;
+
     @NativeQueryResultColumn(columnType = NativeQueryResultColumn.COLUMNTYPE.SIMPLE)
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date datePost;
+    private String datePost;
 
-    public List<Offre> getListOffre() {
-        return listOffre;
+    @NativeQueryResultColumn(columnType = NativeQueryResultColumn.COLUMNTYPE.SIMPLE)
+    private int idOffre;
+
+    @NativeQueryResultColumn(columnType = NativeQueryResultColumn.COLUMNTYPE.SIMPLE)
+    private int idCandidat;
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
     }
 
-    public void setListOffre(List<Offre> listOffre) {
-        this.listOffre = listOffre;
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public List<Candidat> getListCandidat() {
-        return listCandidat;
-    }
-
-    //Object Read Many ORM. Gestion de liste des Offres
-    public void setListCandidat(List<Candidat> listCandidat) {
-        this.listCandidat = listCandidat;
-    }
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "postuler")
-    private List<Offre> listOffre;
-    //Object Read Many ORM. Gestion de liste des candidats
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "postuler")
-    private List<Candidat> listCandidat;
-
-    //GETTERS AND SETTERS
-    public String getIdPost() {
-        return idPost;
-    }
-
-    public void setIdPost(String idPost) {
-        this.idPost = idPost;
-    }
-
+    /**
+     * @return the libPost
+     */
     public String getLibPost() {
         return libPost;
     }
 
+    /**
+     * @param libPost the libPost to set
+     */
     public void setLibPost(String libPost) {
         this.libPost = libPost;
     }
 
-    public Date getDatePost() {
+    /**
+     * @return the datePost
+     */
+    public String getDatePost() {
         return datePost;
     }
 
-    public void setDatePost(Date datePost) {
+    /**
+     * @param datePost the datePost to set
+     */
+    public void setDatePost(String datePost) {
         this.datePost = datePost;
+    }
+
+    /**
+     * @return the idOffre
+     */
+    public int getIdOffre() {
+        return idOffre;
+    }
+
+    /**
+     * @param idOffre the idOffre to set
+     */
+    public void setIdOffre(int idOffre) {
+        this.idOffre = idOffre;
+    }
+
+    /**
+     * @return the idCandidat
+     */
+    public int getIdCandidat() {
+        return idCandidat;
+    }
+
+    /**
+     * @param idCandidat the idCandidat to set
+     */
+    public void setIdCandidat(int idCandidat) {
+        this.idCandidat = idCandidat;
     }
 
 }

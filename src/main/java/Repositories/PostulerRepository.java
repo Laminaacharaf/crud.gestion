@@ -22,10 +22,10 @@ public class PostulerRepository extends BaseRepository<Postuler>{
     }
     
      //AFFICHAGE D'UNE PERSONNE A PARTIR DE SON IDPERSONNE
-    public Postuler getPostulerById(String idPost) {
-        String str = "SELECT po FROM Postuler po WHERE po.idPost =:identifiant";
+    public Postuler getPostulerById(int id) {
+        String str = "SELECT po FROM Postuler po WHERE po.id =:identifiant";
         Query query = getEntityManager().createQuery(str);
-        query.setParameter("identifiant", idPost);
+        query.setParameter("identifiant", id);
         return (Postuler) query.getSingleResult();
     }
      
@@ -37,10 +37,10 @@ public class PostulerRepository extends BaseRepository<Postuler>{
     }
     
       //SUPPRIMESSION D'UN  Postuler A PARTIR DE SON IDPostuler
-    public Postuler delete(String idPost) {
-        String str = "DELECTE ca FROM Postuler ca WHERE ca.idPost =:identifiant";
+    public Postuler delete(int id) {
+        String str = "DELECTE ca FROM Postuler ca WHERE ca.id =:identifiant";
         Query query = getEntityManager().createQuery(str);
-        query.setParameter("identifiant", idPost);
+        query.setParameter("identifiant", id);
         return (Postuler) query.getSingleResult();
     }
 }

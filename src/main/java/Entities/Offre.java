@@ -7,14 +7,12 @@ package Entities;
 
 import com.rintio.commons.annotations.NativeQueryResultColumn;
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
 
 /**
  *
@@ -24,63 +22,110 @@ import javax.persistence.Temporal;
 public class Offre implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NativeQueryResultColumn(columnType = NativeQueryResultColumn.COLUMNTYPE.SIMPLE)
-    private String idOffre;
-    @NativeQueryResultColumn(columnType = NativeQueryResultColumn.COLUMNTYPE.SIMPLE)
-    private String description;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    @NativeQueryResultColumn(columnType = NativeQueryResultColumn.COLUMNTYPE.SIMPLE)
-    private Date dateDebut;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    @NativeQueryResultColumn(columnType = NativeQueryResultColumn.COLUMNTYPE.SIMPLE)
-    private Date dateFin;
+    private int id;
 
-    //RELATION 
+    @NativeQueryResultColumn(columnType = NativeQueryResultColumn.COLUMNTYPE.SIMPLE)
+    private String titre;
+
+    @NativeQueryResultColumn(columnType = NativeQueryResultColumn.COLUMNTYPE.SIMPLE)
+    private String dateDebut;
+
+    @NativeQueryResultColumn(columnType = NativeQueryResultColumn.COLUMNTYPE.SIMPLE)
+    private String dateFin;
+
+    @NativeQueryResultColumn(columnType = NativeQueryResultColumn.COLUMNTYPE.SIMPLE)
+    private String metier;
+
     @ManyToOne
-    @JoinColumn(name = "postuler", referencedColumnName = "idPost")
-    private Postuler postuler;
+    @JoinColumn(name = "users", referencedColumnName = "id")
+    @NativeQueryResultColumn(columnType = NativeQueryResultColumn.COLUMNTYPE.COMPLEX)
+    private Users users;
 
-    public String getDescription() {
-        return description;
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
     }
 
-    //GETTERS AND SETTERS
-    public void setDescription(String description) {
-        this.description = description;
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Postuler getPostuler() {
-        return postuler;
+    /**
+     * @return the titre
+     */
+    public String getTitre() {
+        return titre;
     }
 
-    public void setPostuler(Postuler postuler) {
-        this.postuler = postuler;
+    /**
+     * @param titre the titre to set
+     */
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
-    public String getIdOffre() {
-        return idOffre;
-    }
-
-    public void setIdOffre(String idOffre) {
-        this.idOffre = idOffre;
-    }
-
-    public Date getDateDebut() {
+    /**
+     * @return the dateDebut
+     */
+    public String getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(Date dateDebut) {
+    /**
+     * @param dateDebut the dateDebut to set
+     */
+    public void setDateDebut(String dateDebut) {
         this.dateDebut = dateDebut;
     }
 
-    public Date getDateFin() {
+    /**
+     * @return the dateFin
+     */
+    public String getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(Date dateFin) {
+    /**
+     * @param dateFin the dateFin to set
+     */
+    public void setDateFin(String dateFin) {
         this.dateFin = dateFin;
     }
 
+    /**
+     * @return the metier
+     */
+    public String getMetier() {
+        return metier;
+    }
+
+    /**
+     * @param metier the metier to set
+     */
+    public void setMetier(String metier) {
+        this.metier = metier;
+    }
+
+    /**
+     * @return the users
+     */
+    public Users getUsers() {
+        return users;
+    }
+
+    /**
+     * @param users the users to set
+     */
+    public void setUsers(Users users) {
+        this.users = users;
+    }
 }

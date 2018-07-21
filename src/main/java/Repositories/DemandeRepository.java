@@ -21,10 +21,10 @@ public class DemandeRepository extends BaseRepository<Demande>{
         super(unitPersistence, Demande.class);
     } 
      //AFFICHAGE D'UNE DEMANDE A PARTIR DE SON IDDEMANDE
-    public Demande getDemandeById(String idDemande) {
-        String str = "SELECT de FROM Demande de WHERE de.idDemande =:identifiant";
+    public Demande getDemandeById(int id) {
+        String str = "SELECT de FROM Demande de WHERE de.id =:identifiant";
         Query query = getEntityManager().createQuery(str);
-        query.setParameter("identifiant", idDemande);
+        query.setParameter("identifiant", id);
         return (Demande) query.getSingleResult();
     }
     
@@ -36,10 +36,10 @@ public class DemandeRepository extends BaseRepository<Demande>{
     }
     
       //SUPPRIMESSION D'UN  Demande A PARTIR DE SON IDDemande
-    public Demande delete(String idDemande) {
-        String str = "DELECTE ca FROM Demande ca WHERE ca.idDemande =:identifiant";
+    public Demande delete(int id) {
+        String str = "DELECTE ca FROM Demande ca WHERE ca.id =:identifiant";
         Query query = getEntityManager().createQuery(str);
-        query.setParameter("identifiant", idDemande);
+        query.setParameter("identifiant", id);
         return (Demande) query.getSingleResult();
     }
 }

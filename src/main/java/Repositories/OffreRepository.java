@@ -21,10 +21,10 @@ public class OffreRepository extends BaseRepository<Offre>{
         super(unitPersistence, Offre.class);
     }   
       //AFFICHAGE D'UN  Offre A PARTIR DE SON IDOffre
-    public Offre getOffreById(String idOffre) {
-        String str = "SELECT ca FROM Offre ca WHERE ca.idOffre =:identifiant";
+    public Offre getOffreById(int id) {
+        String str = "SELECT ca FROM Offre ca WHERE ca.id =:identifiant";
         Query query = getEntityManager().createQuery(str);
-        query.setParameter("identifiant", idOffre);
+        query.setParameter("identifiant", id);
         return (Offre) query.getSingleResult();
     }
     
@@ -36,10 +36,10 @@ public class OffreRepository extends BaseRepository<Offre>{
     }
     
       //SUPPRIMESSION D'UN  Offre A PARTIR DE SON IDCandidat
-    public Offre delete(String idOffre) {
-        String str = "DELECTE ca FROM Offre ca WHERE ca.idOffre =:identifiant";
+    public Offre delete(int id) {
+        String str = "DELECTE ca FROM Offre ca WHERE ca.id =:identifiant";
         Query query = getEntityManager().createQuery(str);
-        query.setParameter("identifiant", idOffre);
+        query.setParameter("identifiant", id);
         return (Offre) query.getSingleResult();
     }
 }

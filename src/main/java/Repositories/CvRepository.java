@@ -21,10 +21,10 @@ public class CvRepository extends BaseRepository<Cv>{
         super(unitPersistence, Cv.class);
     }
      //AFFICHAGE D'UN  Cv A PARTIR DE SON IDv
-    public Cv getCvById(String idCv) {
-        String str = "SELECT ca FROM Cv ca WHERE ca.idCv =:identifiant";
+    public Cv getCvById(int id) {
+        String str = "SELECT ca FROM Cv ca WHERE ca.id =:identifiant";
         Query query = getEntityManager().createQuery(str);
-        query.setParameter("identifiant", idCv);
+        query.setParameter("identifiant", id);
         return (Cv) query.getSingleResult();
     }
     
@@ -36,10 +36,10 @@ public class CvRepository extends BaseRepository<Cv>{
     }
     
       //SUPPRESSION D'UN  CV A PARTIR DE SON ID
-    public Cv delete(String idCv) {
-        String str = "DELECTE ca FROM Cv ca WHERE ca.idCv =:identifiant";
+    public Cv delete(int id) {
+        String str = "DELECTE ca FROM Cv ca WHERE ca.id =:identifiant";
         Query query = getEntityManager().createQuery(str);
-        query.setParameter("identifiant", idCv);
+        query.setParameter("identifiant", id);
         return (Cv) query.getSingleResult();
     }
     

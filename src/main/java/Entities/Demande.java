@@ -7,12 +7,12 @@ package Entities;
 
 import com.rintio.commons.annotations.NativeQueryResultColumn;
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -22,32 +22,93 @@ import javax.persistence.ManyToMany;
 public class Demande implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NativeQueryResultColumn(columnType = NativeQueryResultColumn.COLUMNTYPE.SIMPLE)
-    private String idDemande;
+    private int id;
+
     @NativeQueryResultColumn(columnType = NativeQueryResultColumn.COLUMNTYPE.SIMPLE)
-    private Boolean validite;
+    private boolean validite;
 
-    //RELATION
-    @ManyToMany
-    private Collection<Candidat> candidat;
+    @NativeQueryResultColumn(columnType = NativeQueryResultColumn.COLUMNTYPE.SIMPLE)
+    private String contenu;
 
-    //GETTERS AND SETTERS
-    public String getIdDemande() {
-        return idDemande;
+    @NativeQueryResultColumn(columnType = NativeQueryResultColumn.COLUMNTYPE.SIMPLE)
+    private String metier;
+
+    @ManyToOne
+    @JoinColumn(name = "users", referencedColumnName = "id")
+    @NativeQueryResultColumn(columnType = NativeQueryResultColumn.COLUMNTYPE.COMPLEX)
+    private Users users;
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
     }
 
-    public void setIdDemande(String idDemande) {
-        this.idDemande = idDemande;
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Boolean getValidite() {
+    /**
+     * @return the validite
+     */
+    public boolean isValidite() {
         return validite;
     }
 
-    public void setValidite(Boolean validite) {
+    /**
+     * @param validite the validite to set
+     */
+    public void setValidite(boolean validite) {
         this.validite = validite;
     }
 
+    /**
+     * @return the contenu
+     */
+    public String getContenu() {
+        return contenu;
+    }
+
+    /**
+     * @param contenu the contenu to set
+     */
+    public void setContenu(String contenu) {
+        this.contenu = contenu;
+    }
+
+    /**
+     * @return the metier
+     */
+    public String getMetier() {
+        return metier;
+    }
+
+    /**
+     * @param metier the metier to set
+     */
+    public void setMetier(String metier) {
+        this.metier = metier;
+    }
+
+    /**
+     * @return the users
+     */
+    public Users getUsers() {
+        return users;
+    }
+
+    /**
+     * @param users the users to set
+     */
+    public void setUsers(Users users) {
+        this.users = users;
+    }
 }

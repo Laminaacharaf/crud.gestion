@@ -21,10 +21,10 @@ public class UsersRepository extends BaseRepository<Users>{
         super(unitPersistence, Users.class);
     }
      //AFFICHAGE D'UN  Users A PARTIR DE SON IDv
-    public Users getUsersById(String idUser) {
-        String str = "SELECT ca FROM Users ca WHERE ca.idUser =:identifiant";
+    public Users getUsersById(int id) {
+        String str = "SELECT ca FROM Users ca WHERE ca.id =:identifiant";
         Query query = getEntityManager().createQuery(str);
-        query.setParameter("identifiant", idUser);
+        query.setParameter("identifiant", id);
         return (Users) query.getSingleResult();
     }
     
@@ -36,10 +36,10 @@ public class UsersRepository extends BaseRepository<Users>{
     }
     
       //SUPPRIMESSION D'UN  CANDIDAT A PARTIR DE SON IDCandidat
-    public Users delete(String idUser) {
-        String str = "DELECTE ca FROM Users ca WHERE ca.idUser =:identifiant";
+    public Users delete(int id) {
+        String str = "DELECTE ca FROM Users ca WHERE ca.id =:identifiant";
         Query query = getEntityManager().createQuery(str);
-        query.setParameter("identifiant", idUser);
+        query.setParameter("identifiant", id);
         return (Users) query.getSingleResult();
     }
     

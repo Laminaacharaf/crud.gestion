@@ -59,7 +59,7 @@ public class BaseRepository<T> {
 
     }
 
-    public boolean deleteById(String id) {
+    public boolean deleteById(int id) {
         this.getEntityManager().getTransaction().begin();
         getEntityManager().remove(getEntityManager().find(entityClass, id));
         getEntityManager().getTransaction().commit();

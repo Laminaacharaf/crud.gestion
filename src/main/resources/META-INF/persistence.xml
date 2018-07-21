@@ -5,11 +5,8 @@
     <class>Entities.Offre</class>
     <class>Entities.Postuler</class>
     <class>Entities.Cv</class>
-    <class>Entities.Candidat</class>
     <class>Entities.Demande</class>
-    <class>Entities.Metier</class>
     <class>Entities.Users</class>
-    <class>Entities.Recruteur</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Gestemp?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
